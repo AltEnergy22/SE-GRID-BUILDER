@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
 
 interface DataPoint {
@@ -31,6 +33,12 @@ const SparklineCard: React.FC<SparklineCardProps> = ({
   currentValue,
   isLoading = false
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const formatTime = (timestamp: number) => {
     return new Date(timestamp).toLocaleTimeString('en-US', { 
       hour12: false, 
@@ -60,7 +68,7 @@ const SparklineCard: React.FC<SparklineCardProps> = ({
         <span className="text-xs text-gray-500">{latestTime}</span>
       </div>
       
-      {isLoading ? (
+      {isLoading || !mounted ? (
         <div className="h-16 bg-gray-100 rounded animate-pulse mb-2"></div>
       ) : (
         <div className="h-16 mb-2">

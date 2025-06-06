@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { RTCALoading } from '@/hooks/useRTCAStream';
 
@@ -7,6 +10,12 @@ interface WaterfallChartProps {
 }
 
 export function WaterfallChart({ loadings, isLoading }: WaterfallChartProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Take top 20 loadings and format for chart
   const chartData = loadings
     .slice(0, 20)
@@ -50,7 +59,7 @@ export function WaterfallChart({ loadings, isLoading }: WaterfallChartProps) {
     return null;
   };
 
-  if (isLoading) {
+  if (isLoading || !mounted) {
     return (
       <div className="bg-white rounded-lg border border-gray-200">
         <div className="p-6">
