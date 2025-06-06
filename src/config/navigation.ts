@@ -42,7 +42,7 @@ export const navigationItems: NavigationItem[] = [
       {
         icon: ChartBarIcon,
         label: "RTCA",
-        href: "/analysis/rtca",
+        href: "/contingency",
         roles: ["OPERATOR", "ENGINEER", "ADMIN"]
       }
     ]
