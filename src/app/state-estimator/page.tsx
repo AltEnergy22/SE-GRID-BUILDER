@@ -8,9 +8,7 @@ import { ResidualHeatmap } from '@/components/state-estimator/ResidualHeatmap';
 import { OutlierTable } from '@/components/state-estimator/OutlierTable';
 import { useStateEstimator } from '@/hooks/useStateEstimator';
 
-interface StateEstimatorPageProps {}
-
-function StateEstimatorPage({}: StateEstimatorPageProps) {
+function StateEstimatorPage() {
   const [algorithm, setAlgorithm] = useState<'WLS' | 'Huber'>('WLS');
   const [epsilon, setEpsilon] = useState<number>(1e-6);
   const [gridId] = useState('alberta-test'); // In real app, this would come from context or routing
@@ -89,4 +87,4 @@ function StateEstimatorPage({}: StateEstimatorPageProps) {
 }
 
 // Export with role-based access control - ENGINEER, OPERATOR, and ADMIN can access
-export default withRole(StateEstimatorPage, ['ENGINEER', 'OPERATOR', 'ADMIN']); 
+export default withRole(['ENGINEER', 'OPERATOR', 'ADMIN'])(StateEstimatorPage); 

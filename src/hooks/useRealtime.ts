@@ -1,35 +1,61 @@
 import useSWR from 'swr';
 
+export interface DataPoint {
+  timestamp: number;
+  value: number;
+}
+
+export interface BusVoltageData {
+  voltage: number;
+  angle: number;
+  delta_v: number;
+}
+
+export interface EventItem {
+  id: string;
+  timestamp: number;
+  type: 'alarm' | 'event' | 'warning' | 'info';
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  message: string;
+  source?: string;
+  acknowledged?: boolean;
+  category?: 'protection' | 'measurement' | 'control' | 'communication' | 'bad-data';
+}
+
 export interface RealtimeData {
+  // Current Values
   frequency: number;
   ace: number;
   total_load: number;
   renewable_pct: number;
-  violations: number;
-  active_alarms: number;
   se_convergence: boolean;
+  active_alarms: number;
+  violations: number;
   rtca_jobs: number;
-  bus_voltages: Record<string, { voltage: number; angle: number; delta_v: number }>;
-  freq_history: Array<{ timestamp: number; value: number }>;
-  ace_history: Array<{ timestamp: number; value: number }>;
-  load_history: Array<{ timestamp: number; value: number }>;
-  renewable_history: Array<{ timestamp: number; value: number }>;
-  recent_events: Array<{
-    id: string;
-    timestamp: number;
-    type: 'alarm' | 'event' | 'warning';
-    severity: 'low' | 'medium' | 'high' | 'critical';
-    message: string;
-    source?: string;
-  }>;
+  
+  // Historical Data for Sparklines (30 min window)
+  freq_history: DataPoint[];
+  ace_history: DataPoint[];
+  load_history: DataPoint[];
+  renewable_history: DataPoint[];
+  
+  // Bus voltage data for topology heatmap
+  bus_voltages: Record<string, BusVoltageData>;
+  
+  // Recent events for event feed
+  recent_events: EventItem[];
+  
+  // Metadata
+  timestamp: number;
+  grid_id: string;
 }
 
-const fetcher = async (url: string): Promise<RealtimeData> => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch realtime data: ${response.statusText}`);
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
   }
-  return response.json();
+  return res.json();
 };
 
 export const useRealtime = () => {
@@ -51,6 +77,6 @@ export const useRealtime = () => {
     data,
     error,
     isLoading,
-    refresh: mutate,
+    mutate, // Allow manual refresh
   };
 }; 

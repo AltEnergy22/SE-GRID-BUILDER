@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "name": "Alberta Test Grid",
+    "description": "Test grid for topology visualization",
+    "created_at": "2024-01-01T00:00:00"
+  },
+  "id": "alberta-test",
+  "name": "Alberta Test Grid",
+  "buses": [
+    {
+      "id": "BUS-1",
+      "name": "Calgary North",
+      "voltage_kv": 500,
+      "vm_pu": 1.02,
+      "va_degree": 0.0,
+      "type": "slack",
+      "in_service": true
+    },
+    {
+      "id": "BUS-2", 
+      "name": "Calgary South",
+      "voltage_kv": 500,
+      "vm_pu": 1.01,
+      "va_degree": -2.5,
+      "type": "pv",
+      "in_service": true
+    },
+    {
+      "id": "BUS-3",
+      "name": "Edmonton West",
+      "voltage_kv": 500,
+      "vm_pu": 0.98,
+      "va_degree": -5.2,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-4",
+      "name": "Edmonton East",
+      "voltage_kv": 500,
+      "vm_pu": 0.99,
+      "va_degree": -4.8,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-5",
+      "name": "Red Deer",
+      "voltage_kv": 240,
+      "vm_pu": 1.00,
+      "va_degree": -3.1,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-6",
+      "name": "Lethbridge",
+      "voltage_kv": 240,
+      "vm_pu": 0.97,
+      "va_degree": -6.2,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-7",
+      "name": "Fort McMurray",
+      "voltage_kv": 240,
+      "vm_pu": 0.96,
+      "va_degree": -7.5,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-8",
+      "name": "Grande Prairie",
+      "voltage_kv": 240,
+      "vm_pu": 1.03,
+      "va_degree": -1.8,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-9",
+      "name": "Medicine Hat",
+      "voltage_kv": 138,
+      "vm_pu": 0.95,
+      "va_degree": -8.1,
+      "type": "pq",
+      "in_service": true
+    },
+    {
+      "id": "BUS-10",
+      "name": "Peace River",
+      "voltage_kv": 138,
+      "vm_pu": 1.04,
+      "va_degree": -2.2,
+      "type": "pq",
+      "in_service": false
+    }
+  ],
+  "branches": [
+    {
+      "id": "LINE-1",
+      "name": "Calgary-Edmonton 500kV",
+      "type": "line",
+      "from_bus": "BUS-1",
+      "to_bus": "BUS-3",
+      "loading_percent": 65.2,
+      "in_service": true
+    },
+    {
+      "id": "LINE-2",
+      "name": "Calgary N-S 500kV",
+      "type": "line", 
+      "from_bus": "BUS-1",
+      "to_bus": "BUS-2",
+      "loading_percent": 45.8,
+      "in_service": true
+    },
+    {
+      "id": "LINE-3",
+      "name": "Edmonton W-E 500kV",
+      "type": "line",
+      "from_bus": "BUS-3", 
+      "to_bus": "BUS-4",
+      "loading_percent": 32.1,
+      "in_service": true
+    },
+    {
+      "id": "TRAFO-1",
+      "name": "Calgary-Red Deer 500/240kV",
+      "type": "transformer",
+      "from_bus": "BUS-2",
+      "to_bus": "BUS-5", 
+      "loading_percent": 78.5,
+      "in_service": true
+    },
+    {
+      "id": "TRAFO-2",
+      "name": "Calgary-Lethbridge 500/240kV",
+      "type": "transformer",
+      "from_bus": "BUS-2",
+      "to_bus": "BUS-6",
+      "loading_percent": 55.3,
+      "in_service": true
+    },
+    {
+      "id": "LINE-4",
+      "name": "Edmonton-Fort McMurray 240kV",
+      "type": "line",
+      "from_bus": "BUS-4",
+      "to_bus": "BUS-7",
+      "loading_percent": 89.7,
+      "in_service": true
+    },
+    {
+      "id": "LINE-5",
+      "name": "Edmonton-Grande Prairie 240kV", 
+      "type": "line",
+      "from_bus": "BUS-3",
+      "to_bus": "BUS-8",
+      "loading_percent": 42.6,
+      "in_service": true
+    },
+    {
+      "id": "TRAFO-3",
+      "name": "Lethbridge-Medicine Hat 240/138kV",
+      "type": "transformer",
+      "from_bus": "BUS-6",
+      "to_bus": "BUS-9",
+      "loading_percent": 67.4,
+      "in_service": true
+    },
+    {
+      "id": "TRAFO-4",
+      "name": "Grande Prairie-Peace River 240/138kV",
+      "type": "transformer",
+      "from_bus": "BUS-8",
+      "to_bus": "BUS-10",
+      "loading_percent": 0.0,
+      "in_service": false
+    }
+  ]
+} 

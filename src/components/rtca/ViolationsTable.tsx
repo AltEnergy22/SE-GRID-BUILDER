@@ -233,6 +233,7 @@ export function ViolationsTable({ violations, onRowClick, isLoading }: Violation
           <div style={{ height: 400 }}>
             <List
               height={400}
+              width={800}
               itemCount={sortedViolations.length}
               itemSize={60}
               itemData={{

@@ -96,6 +96,33 @@ async def get_realtime_data():
     }
 
 
+@app.get("/realtime/topology")
+async def get_realtime_topology(grid: str = "alberta-test"):
+    """Get real-time topology data for voltage and loading updates."""
+    import random
+    import time
+    
+    # Generate simulated live voltage data for buses
+    vm_pu_by_bus = {}
+    for bus_id in range(1, 51):  # 50 buses
+        # Simulate voltage variations around 1.0 p.u.
+        base_voltage = 1.0
+        variation = random.uniform(-0.08, 0.08)  # ±8% variation
+        vm_pu_by_bus[f"BUS-{bus_id}"] = base_voltage + variation
+    
+    # Generate simulated loading data for branches
+    loading_by_branch = {}
+    for branch_id in range(1, 76):  # 75 branches
+        # Simulate loading percentages
+        loading_by_branch[f"LINE-{branch_id}"] = random.uniform(10, 95)
+    
+    return {
+        "vm_pu_by_bus": vm_pu_by_bus,
+        "loading_by_branch": loading_by_branch,
+        "timestamp": time.time()
+    }
+
+
 app.include_router(grids.router, prefix="/grids")
 app.include_router(sim.router, prefix="/sim")
 app.include_router(calib.router) 
