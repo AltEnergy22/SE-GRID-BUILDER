@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { MapIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 interface VoltageData {
@@ -87,7 +89,6 @@ const MiniTopologyHeatmap: React.FC<MiniTopologyHeatmapProps> = ({
 
   return (
     <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
-      
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div>
@@ -130,15 +131,15 @@ const MiniTopologyHeatmap: React.FC<MiniTopologyHeatmapProps> = ({
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-            <span>< 0.02</span>
+            <span>&lt; 0.02</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-            <span>< 0.05</span>
+            <span>&lt; 0.05</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-            <span>< 0.10</span>
+            <span>&lt; 0.10</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 bg-red-400 rounded-full"></div>
