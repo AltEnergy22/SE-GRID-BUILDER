@@ -44,6 +44,12 @@ export const navigationItems: NavigationItem[] = [
         label: "RTCA",
         href: "/contingency",
         roles: ["OPERATOR", "ENGINEER", "ADMIN"]
+      },
+      {
+        icon: ChartBarIcon,
+        label: "What-If",
+        href: "/what-if",
+        roles: ["ENGINEER", "OPERATOR", "ADMIN"]
       }
     ]
   },
