@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "altichain-grid-sim"
+version = "0.1.0"
+description = "Grid simulation engine backend"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.104.1"
+uvicorn = {extras = ["standard"], version = "^0.24.0"}
+pandapower = "~2.14.9"
+pydantic-settings = "^2.0.3"
+numpy = "^1.24.0"
+scipy = "^1.11.0"
+pandas = "^2.0.0"
+tqdm = "^4.66.0"
+sse-starlette = "^1.8.0"
+python-json-logger = "^2.0.0"
+aiosqlite = "^0.19.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+httpx = "^0.25.2"
+black = "^23.11.0"
+isort = "^5.12.0"
+pre-commit = "^3.5.0"
+
+[tool.poetry.scripts]
+sim-dev = "uvicorn app.main:app --reload --port 8001"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3 
