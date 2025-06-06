@@ -50,6 +50,12 @@ export const navigationItems: NavigationItem[] = [
         label: "What-If",
         href: "/what-if",
         roles: ["ENGINEER", "OPERATOR", "ADMIN"]
+      },
+      {
+        icon: ChartBarIcon,
+        label: "Topology",
+        href: "/topology",
+        roles: ["ENGINEER", "OPERATOR", "ADMIN"]
       }
     ]
   },
