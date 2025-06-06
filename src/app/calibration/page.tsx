@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { withRole } from '@/components/auth/withRole';
 import CalibrationDashboard from '@/components/calibration/CalibrationDashboard';
